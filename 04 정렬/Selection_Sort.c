@@ -18,19 +18,21 @@ void selection(int arr[], int size)
 {
 	for (int i = 0; i < size; i++)
 	{
-		for (int j = i; j < size; j++)
+		int min = i;
+		for (int j = i+1; j < size; j++)
 		{
-			if (arr[i] > arr[j])
+			if (arr[min] > arr[j])
 			{
-				swap(arr, i, j);
+				min = j;
 			}
 		}
+		swap(arr, min, i);
 		printArr(arr, size);
 	}
 }
 int main()
 {
-	int data[10] = { 23,17,5,90,12 };
+	int data[10] = { 7,5,4,9,1 };
 
 	printf("-----------------------------------------------\n");
 	printf("Before being sorted\n");
