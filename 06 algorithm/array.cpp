@@ -50,38 +50,31 @@ int main() {
 	int dx[4] = { 0,1,0,-1 };
 	int dy[4] = { 1,0,-1,0 };
 	int direction = 0;
-	int right_edge = n - 1;
-	int left_edge = 0;
-	int x=0, y=0;
+	
+	int x = 0, y = -1;
+	int cnt = 0;
 	int val = 1;
+	int move[2] = { n, n-1 };
+	int idx = 0;
+	while (cnt < n*n) {
+		for (int j = 0; j < move[idx]; j++) {
+			x += dx[direction];
+			y += dy[direction];
+			arr[x][y] = val++;
+			cnt++;
+		}
+		direction = (direction + 1) % 4;
+		move[idx]--;
+		idx = (idx + 1) % 2;
+
+	}
+		
+	
 	for (int i = 0; i < n; i++) {
-	for (int j = 0; j < n; j++) {
-	arr[x][y] = val++;
-	//cout << arr[x][y] << ' ';
-	x += dx[direction];
-	y += dy[direction];
-	if (direction == 0 && y == right_edge) {
-	direction = (direction + 1) % 4;
-	}
-	else if (direction == 1 && x == right_edge) {
-	direction = (direction + 1) % 4;
-	right_edge--;
-	}
-	else if (direction == 2 && y == left_edge) {
-	direction = (direction + 1) % 4;
-	left_edge++;
-	}
-	else if (direction == 3 && x == left_edge) {
-	direction = (direction + 1) % 4;
-	}
-	}
-	//cout << endl;
-	}
-	for (int i = 0; i < n; i++) {
-	for (int j = 0; j < n; j++) {
-	cout << arr[i][j] << ' ';
-	}
-	cout << endl;
+		for (int j = 0; j < n; j++) {
+			cout << arr[i][j] << ' ';
+		}
+		cout << endl;
 	}
 	*/
 
