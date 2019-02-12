@@ -13,7 +13,7 @@ int factorial(int n)
 
 int factorial2(int n)
 {
-	if (n == 1)
+	if (n == 0)
 	{
 		return 1;
 	}
@@ -24,5 +24,5 @@ int factorial2(int n)
 }
 int main()
 {
-	printf("%d %d", factorial(3), factorial2(3));
+	printf("%d %d", factorial(0), factorial2(0));
 }
