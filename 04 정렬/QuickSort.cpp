@@ -12,55 +12,29 @@ void printArr(int n) {
 	cout << endl;
 }
 
-void quick(int pivot, int left, int right) {
-	int leftIdx = left;
-	int rightIdx = right;
-	cout << "pivot : " << pivot << " left : " << left << " right : " << right << endl;
-	while (leftIdx < rightIdx) {
-		while (arr[leftIdx] < arr[pivot] && leftIdx <= right) {
-			leftIdx++;
+void quick_sort(int pivot, int left, int right) {
+	int left_idx = left;
+	int right_idx = right;
+
+	while (left_idx <= right_idx) {
+
+		while (left_idx <= right && arr[pivot] >= arr[left_idx]) {
+			left_idx++;
 		}
-		while (arr[rightIdx] > arr[pivot] && left <= rightIdx) {
-			rightIdx--;
+		while (right_idx >= left && arr[pivot] <= arr[right_idx]) {
+			right_idx--;
 		}
 
-		if (rightIdx < leftIdx) {
-			swap(arr[pivot], arr[rightIdx]);
-			quick(pivot, pivot + 1, rightIdx);
-			quick(rightIdx + 1, rightIdx + 2, right);
+		if (left_idx <= right_idx) {
+			swap(arr[left_idx], arr[right_idx]);
 		}
 		else {
-			swap(arr[leftIdx], arr[rightIdx]);
+			swap(arr[pivot], arr[right_idx]);
+			quick_sort(pivot, pivot + 1, right_idx - 1);
+			quick_sort(right_idx + 1, right_idx + 2, right);
 		}
 	}
-}
 
-void quick_s(int pivot, int left_idx, int right_idx)
-{
-	int left = left_idx;
-	int right = right_idx;
-	//cout << "pivot : " << pivot << " left : " << left << " right : " << right << endl;
-	while (left <= right)
-	{
-		while (arr[pivot] >= arr[left] && left <= right_idx)
-		{
-			left++;
-		}
-		while (arr[pivot] <= arr[right] && right >= left_idx)
-		{
-			right--;
-		}
-		if (right < left)
-		{
-			swap(arr[pivot], arr[right]);
-			quick_s(pivot, pivot + 1, right - 1);
-			quick_s(right + 1, right + 2, right_idx);
-		}
-		else
-		{
-			swap(arr[left], arr[right]);
-		}
-	}
 }
 int main() {
 	srand((unsigned int)time(NULL));
